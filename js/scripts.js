@@ -27,20 +27,32 @@ var matrixFinder = function (newInput) {
     for (i = 0; i < newInput.length; i += column) {
         splitArr.push(newInput.substring(i, i + column));
     }
-    console.log(splitArr)
+
     //Get 1st colum:
-    var resultStr =[];
-    for (j=0;j<=row;j++) {
-        for(i=0;i<column;i++) {
-            if (typeof(splitArr[i].charAt(j)) === "undefined") {
+    var resultStr = [];
+    for (j = 0; j <= row; j++) {
+        for (i = 0; i < column; i++) {
+            if (typeof (splitArr[i].charAt(j)) === "undefined") {
                 resultStr.pop();
             }
             else {
                 resultStr.push(splitArr[i].charAt(j));
             }
-        } 
+        }
     }
-    return resultStr;
+
+    var finalResultArr = "";
+    for (i = 0; i < resultStr.length; i ++) {
+        finalResultArr+= resultStr[i];
+    }
+
+    var finalResultArr2 = "";
+    for (i = 0; i < finalResultArr.length; i +=5) {
+        finalResultArr2 += finalResultArr.substring(i,i+5) + " ";
+    }
+    console.log(finalResultArr2);
+    return finalResultArr2;
+    
 }
 
 
@@ -50,6 +62,7 @@ $(document).ready(function () {
         event.preventDefault();
         var inputStr = $("#inputStr").val();
         $("encoderStr").empty();
+        console.log(typeof (matrixFinder(removeChar(inputStr))));
         $("#encodedStr").append(matrixFinder(removeChar(inputStr)));
     })
 })
