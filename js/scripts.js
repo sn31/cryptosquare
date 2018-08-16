@@ -13,10 +13,10 @@ var removeChar = function (input) {
 
 var matrixFinder = function (newInput) {
     //Find rows and columns
-    var row = Math.ceil(Math.sqrt(newInput.length));
+    var row = Math.floor(Math.sqrt(newInput.length));
 
     if (Math.pow(row, 2) > newInput.length) {
-        var column = row - 1;
+        var column = row + 1;
     }
     else {
         var column = row;
@@ -27,18 +27,22 @@ var matrixFinder = function (newInput) {
     for (i = 0; i < newInput.length; i += column) {
         splitArr.push(newInput.substring(i, i + column));
     }
-    console.log(splitArr[8][6])
+    console.log(splitArr)
     //Get 1st colum:
-    var resultStr ="";
-    for (j=0;j<row;j++) {
-        for(i=0;i<=column;i++) {
-            if (splitArr[i][j] !== "undefined") {
-                resultStr+=(splitArr[i][j]);
+    var resultStr =[];
+    for (j=0;j<=row;j++) {
+        for(i=0;i<column;i++) {
+            if (typeof(splitArr[i].charAt(j)) === "undefined") {
+                resultStr.pop();
+            }
+            else {
+                resultStr.push(splitArr[i].charAt(j));
             }
         } 
     }
     console.log(resultStr);
-    console.log(resultStr.match(/.{5}/g)); 
+    console.log(resultStr.join("").split(0,5)); 
+    return resultStr;
 }
 
 // var createTable = function (splitArr) {
