@@ -40,24 +40,16 @@ var matrixFinder = function (newInput) {
             }
         } 
     }
-    console.log(resultStr);
-    console.log(resultStr.join("").split(0,5)); 
     return resultStr;
 }
 
-// var createTable = function (splitArr) {
-//     var cryotoSquare = new Array(row);
-//     for (i=0;i<row;i++) {
-//         var row[i] = splitArr[i];
-//     }
-// }
+
 //FRONT-END
 $(document).ready(function () {
     $("form#input").submit(function (event) {
         event.preventDefault();
         var inputStr = $("#inputStr").val();
-        console.log(matrixFinder(removeChar(inputStr)));
         $("encoderStr").empty();
-        $("#encodedStr").append(removeChar(inputStr));
+        $("#encodedStr").append(matrixFinder(removeChar(inputStr)));
     })
 })
