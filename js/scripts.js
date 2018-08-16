@@ -11,26 +11,48 @@ var removeChar = function (input) {
     return newInput;
 }
 
-var encoder = function (newInput) {
-
+var matrixFinder = function (newInput) {
+    //Find rows and columns
     var row = Math.ceil(Math.sqrt(newInput.length));
 
-    if (Math.pow(row,2) > newInput.length) {
-        var column = row -1;
+    if (Math.pow(row, 2) > newInput.length) {
+        var column = row - 1;
     }
     else {
         var column = row;
     }
-    
-    return [row,column];
+    // Split input to smaller arrays
+    var splitArr = [];
+
+    for (i = 0; i < newInput.length; i += column) {
+        splitArr.push(newInput.substring(i, i + column));
+    }
+    console.log(splitArr[8][6])
+    //Get 1st colum:
+    var resultStr ="";
+    for (j=0;j<row;j++) {
+        for(i=0;i<=column;i++) {
+            if (splitArr[i][j] !== "undefined") {
+                resultStr+=(splitArr[i][j]);
+            }
+        } 
+    }
+    console.log(resultStr);
+    console.log(resultStr.match(/.{5}/g)); 
 }
 
+// var createTable = function (splitArr) {
+//     var cryotoSquare = new Array(row);
+//     for (i=0;i<row;i++) {
+//         var row[i] = splitArr[i];
+//     }
+// }
 //FRONT-END
 $(document).ready(function () {
     $("form#input").submit(function (event) {
         event.preventDefault();
         var inputStr = $("#inputStr").val();
-        console.log(encoder(removeChar(inputStr)));
+        console.log(matrixFinder(removeChar(inputStr)));
         $("encoderStr").empty();
         $("#encodedStr").append(removeChar(inputStr));
     })
