@@ -1,68 +1,28 @@
 //BACK-END
-
-var removeChar = function (input) {
-    var newInput = "";
-    for (i = 0; i < input.length; i++) {
-        if (input[i].match(/^[a-zA-Z0-9]$/)) {
-            newInput += input[i].toLowerCase();
-            // console.log(newInput[i]);
-        }
-    }
-    return newInput;
-}
-
-var matrixFinder = function (newInput) {
-    //Find rows and columns
+var encoder = function (inputStr) {
+    var newInput = inputStr.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
     var row = Math.floor(Math.sqrt(newInput.length));
-
-    if (Math.pow(row, 2) > newInput.length) {
-        var column = row + 1;
-    }
-    else {
-        var column = row;
-    }
-    // Split input to smaller arrays
+    var column = Math.ceil(Math.sqrt(newInput.length));
     var splitArr = [];
+    var resultStr = "";
 
     for (i = 0; i < newInput.length; i += column) {
         splitArr.push(newInput.substring(i, i + column));
     }
 
-    //Get 1st colum:
-    var resultStr = [];
-    for (j = 0; j <= row; j++) {
-        for (i = 0; i < column; i++) {
-            if (typeof (splitArr[i].charAt(j)) === "undefined") {
-                resultStr.pop();
-            }
-            else {
-                resultStr.push(splitArr[i].charAt(j));
-            }
+    for (j = 0; j < column; j++) {
+        for (i = 0; i < row; i++) {
+            resultStr += splitArr[i][j];
         }
     }
-
-    var finalResultArr = "";
-    for (i = 0; i < resultStr.length; i ++) {
-        finalResultArr+= resultStr[i];
-    }
-
-    var finalResultArr2 = "";
-    for (i = 0; i < finalResultArr.length; i +=5) {
-        finalResultArr2 += finalResultArr.substring(i,i+5) + " ";
-    }
-    console.log(finalResultArr2);
-    return finalResultArr2;
-    
+    return (resultStr.match(/.{5}/g).join(' ')); //insert a space after every 5th character.
 }
-
-
 //FRONT-END
 $(document).ready(function () {
     $("form#input").submit(function (event) {
         event.preventDefault();
         var inputStr = $("#inputStr").val();
-        $("encoderStr").empty();
-        console.log(typeof (matrixFinder(removeChar(inputStr))));
-        $("#encodedStr").append(matrixFinder(removeChar(inputStr)));
+        $("#encodedStr").empty();
+        $("#encodedStr").append(encoder(inputStr));
     })
 })

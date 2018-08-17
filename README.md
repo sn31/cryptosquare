@@ -13,7 +13,7 @@ In this method, the spaces and punctuation are removed from the English text and
 | :-------------     | :-------------     | :------------- | :------------- |
 | 1 | The program will remove all non-text and non-digit characters from the input string.  | hi i am $# 24! | hiiam24 |
 | 2 | The program will convert the input string to lowercase. | My NAme Is Ke$ha;| mynameiskeha |
-| 3 | The program will return an encoded message based on the input length using the cryptosquare rules. | Don't comparE yourself to othErs, compare yourself to the Person you were yEsterday! | daeer leweo rlref rerne fsyts rdtyt coooe acooo utnyy ouomr hyemr tpseo spsha eput|
+| 3 | The program will return an encoded message based on the input length using the cryptosquare rules. | Have a nice day. Feed the dog & chill out! | hifei acedl veeol eddgo aatcu nyhht|
 
 
 ## Setup/Installation Requirements
@@ -47,6 +47,6 @@ Please contact me at skye@dames.es for more information and/or feedback.
 
 ### License
 
-*none*
+*MIT*
 
 Copyright (c) 2018 **_Chris Crow & Skye Nguyen_**
